@@ -37,8 +37,8 @@ You can do this:
 
 ```go
 func array8sum(xs *[8]int) int {
-    total := 0
-    //opt: unroll
+	total := 0
+	//opt: unroll
 	for _, x := range xs {
 		total += x
 	}
@@ -57,7 +57,7 @@ For example, you may ask to apply all sensible optimizations to the function:
 // Can also use func/space to optimize for code size.
 //opt: func/speed
 func array8sum(xs *[8]int) int {
-    total := 0
+	total := 0
 	for _, x := range xs {
 		total += x
 	}
