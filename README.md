@@ -54,7 +54,7 @@ There are other optimizations that can be performed by the `n2o`.
 For example, you may ask to apply all sensible optimizations to the function:
 
 ```go
-// Can also use func/space to optimize for code size.
+// Can also use func/size to optimize for code size.
 //n2o: func/speed
 func array8sum(xs *[8]int) int {
 	total := 0
@@ -68,3 +68,37 @@ func array8sum(xs *[8]int) int {
 Read docs to know more about supported directives and their meaning.
 
 Basically, you write Go and then improve performance by optimizer hints, instead of doing dirty work by yourself.
+
+## Optimizations
+
+### Statement/expression local
+
+Some optimizations are applied to the particular statement or expression:
+
+* `inline` - force function inlining at the specified call site.
+* `unroll` - unroll a whole loop or make it execute several steps at each iteration.
+
+### Function attributes
+
+On the function level, there are various optimization attributes.
+
+```go
+//n2o: inline
+// Force function inlining at the every call site, even if `gc` compiler
+// does not consider function as inlineable candidate.
+// If possible, n2o may transform function body to make function
+// inlineable by `gc` itself, otherwise it does inlining on its own.
+func example() {}
+```
+
+There are also `speed` and `size` optional attributes that can't be used together:
+
+```go
+//n2o: size
+// Try to make function more compact by applying various optimizations to its body.
+func optimizedForSize() {}
+
+//n2o: speed
+// Try to make function run faster by applying various optimizations to its body.
+func optimizedForExecutionTime() {}
+```
