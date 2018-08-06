@@ -80,7 +80,8 @@ Some optimizations are applied to the particular statement or expression:
 
 ### Function attributes
 
-On the function level, there are various optimization attributes.
+On the function level, there are various optimization attributes that affect
+whole function body.
 
 ```go
 //n2o: inline
