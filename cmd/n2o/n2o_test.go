@@ -6,6 +6,13 @@ import (
 	"testing"
 )
 
+func TestCodeGen(t *testing.T) {
+	// TODO(quasilyte): check for n2o file contents.
+	// The main.n2o.go file is a "golden" one,
+	// running n2o tool over main.go should result in
+	// a file with the same contents.
+}
+
 func TestOutput(t *testing.T) {
 	have := execCommand(t, "go", "run", filepath.Join("testdata", "main.n2o.go"))
 	want := execCommand(t, "go", "run", filepath.Join("testdata", "main.go"))
