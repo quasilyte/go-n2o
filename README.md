@@ -71,12 +71,26 @@ Basically, you write Go and then improve performance by optimizer hints, instead
 
 ## Optimizations
 
+Please note that some optimizations may be dangerous when used inappropriately.
+
+For example, one should not use `deadcode` when unsure that such code path is
+never executed in the production environment.
+This is as dangerous as turning off asserts in C and alike, caveat emptor.
+
+For your convenience, such unsafe optimizations are listed in a separate list.
+
 ### Statement/expression local
 
 Some optimizations are applied to the particular statement or expression:
 
+**Safe optimizations**:
+
 * `inline` - force function inlining at the specified call site.
 * `unroll` - unroll a whole loop or make it execute several steps at each iteration.
+
+**Unsafe optimizations**:
+
+* `deadcode` - replace expression or statement that is believed to be "dead" during execution.
 
 ### Function attributes
 
